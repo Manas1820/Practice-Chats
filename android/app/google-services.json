@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "645382261895",
+    "firebase_url": "https://flutterchat-87385.firebaseio.com",
+    "project_id": "flutterchat-87385",
+    "storage_bucket": "flutterchat-87385.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645382261895:android:12b71b1caa4a595c25fc22",
+        "android_client_info": {
+          "package_name": "com.example.Ranbhumi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "645382261895-cdp5er5tq0t48a6j7rgdq9i7uh0lgb8n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2G-RAWrM4-79wl-2EABNfXx1CJiOiyB0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "645382261895-cdp5er5tq0t48a6j7rgdq9i7uh0lgb8n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
