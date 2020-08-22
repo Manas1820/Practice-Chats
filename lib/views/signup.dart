@@ -7,6 +7,8 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final formKey = GlobalKey<FormState>();
+
   TextEditingController userNameTextEditingController =
       new TextEditingController();
   TextEditingController emailTextEditingController =
@@ -14,30 +16,61 @@ class _SignUpState extends State<SignUp> {
   TextEditingController passwordTextEditingController =
       new TextEditingController();
 
+  signMeUP() {
+    if (formKey.currentState.validate()) {}
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: appBarMain(context),
         body: Container(
           child: Container(
+              height: MediaQuery.of(context).size.height - 50,
               padding: EdgeInsets.symmetric(horizontal: 24),
+              alignment: Alignment.bottomCenter,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextField(
-                    controller: userNameTextEditingController,
-                    decoration: textFieldInputDecoration("Username"),
-                    style: textFieldStyle(),
-                  ),
-                  TextField(
-                    controller: emailTextEditingController,
-                    decoration: textFieldInputDecoration("email"),
-                    style: textFieldStyle(),
-                  ),
-                  TextField(
-                    controller: passwordTextEditingController,
-                    decoration: textFieldInputDecoration("password"),
-                    style: textFieldStyle(),
+                  Form(
+                    key: formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          validator: (val) {
+                            return val.isEmpty || val.length < 5
+                                ? "Please Provide Username"
+                                : null;
+                          },
+                          controller: userNameTextEditingController,
+                          decoration: textFieldInputDecoration("Username"),
+                          style: textFieldStyle(),
+                        ),
+                        TextFormField(
+                          validator: (val) {
+                            return RegExp(
+                                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                    .hasMatch(val)
+                                ? null
+                                : "Please Provide a valid email id ";
+                          },
+                          controller: emailTextEditingController,
+                          decoration: textFieldInputDecoration("email"),
+                          style: textFieldStyle(),
+                        ),
+                        TextFormField(
+                          obscureText: true,
+                          validator: (val) {
+                            return val.length > 4
+                                ? null
+                                : "Please Enter a password Greater 4 charachter";
+                          },
+                          controller: passwordTextEditingController,
+                          decoration: textFieldInputDecoration("password"),
+                          style: textFieldStyle(),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 8,
@@ -56,19 +89,24 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(
                     height: 8,
                   ),
-                  Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [
-                          const Color(0xff007EF4),
-                          const Color(0xff2A75BC)
-                        ]),
-                        borderRadius: BorderRadius.circular(30)),
-                    child: Text(
-                      "Sign Up",
-                      style: textFieldStyle1(),
+                  GestureDetector(
+                    onTap: () {
+                      signMeUP();
+                    },
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                            const Color(0xff007EF4),
+                            const Color(0xff2A75BC)
+                          ]),
+                          borderRadius: BorderRadius.circular(30)),
+                      child: Text(
+                        "Sign Up",
+                        style: textFieldStyle1(),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -103,7 +141,7 @@ class _SignUpState extends State<SignUp> {
                     ],
                   ),
                   SizedBox(
-                    height: 50,
+                    height: 40,
                   ),
                 ],
               )),
