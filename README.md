@@ -16,4 +16,4 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 
-## This is taken from a tutorial from Youtube by [Sanskar Tiwari](https://www.youtube.com/channel/UCsPdgUIoOBTBI1UmulW1pdw)
+This is made from a tutorial from Youtube by [Sanskar Tiwari](https://www.youtube.com/channel/UCsPdgUIoOBTBI1UmulW1pdw)
