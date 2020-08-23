@@ -2,6 +2,8 @@ import 'package:Ranbhumi/widgets/widget.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
+  final Function toggle;
+  SignIn(this.toggle);
   @override
   _SignInState createState() => _SignInState();
 }
@@ -22,12 +24,25 @@ class _SignInState extends State<SignIn> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  TextField(
+                  TextFormField(
+                    validator: (val) {
+                      return RegExp(
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                              .hasMatch(val)
+                          ? null
+                          : "Please Provide a valid email id ";
+                    },
                     controller: emailTextEditingController,
                     decoration: textFieldInputDecoration("email"),
                     style: textFieldStyle(),
                   ),
-                  TextField(
+                  TextFormField(
+                    obscureText: true,
+                    validator: (val) {
+                      return val.length > 4
+                          ? null
+                          : "Please Enter a password Greater 4 charachter";
+                    },
                     controller: passwordTextEditingController,
                     decoration: textFieldInputDecoration("password"),
                     style: textFieldStyle(),

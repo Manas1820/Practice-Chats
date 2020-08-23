@@ -1,16 +1,18 @@
 import 'package:Ranbhumi/services/auth.dart';
+import 'package:Ranbhumi/views/chatRoomScreen.dart';
 import 'package:Ranbhumi/widgets/widget.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase/firestore.dart';
 
 class SignUp extends StatefulWidget {
+  final Function toggle;
+  SignUp(this.toggle);
   @override
   _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
   final formKey = GlobalKey<FormState>();
-
+  AuthMethods authMethods = new AuthMethods();
   bool isLoading = false;
 
   TextEditingController userNameTextEditingController =
@@ -25,10 +27,12 @@ class _SignUpState extends State<SignUp> {
       setState(() {
         isLoading = true;
       });
-      AuthMethods.signUpWithEmailAndPassword(emailTextEditingController.text,
+      authMethods
+          .signUpWithEmailAndPassword(emailTextEditingController.text,
               passwordTextEditingController.text)
           .then((val) {
-        print("$val");
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => ChatRoom()));
       });
     }
   }
